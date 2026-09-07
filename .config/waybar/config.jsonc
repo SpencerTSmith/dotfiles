@@ -163,7 +163,7 @@
 	"wireplumber": {
 		"format": " {icon} <span color='#ebdbb2'>{volume}%</span> ",
 		"tooltip": true,
-		"max-volume": 100,
+		"max-volume": 120,
     "scroll-step": 1,
 		"on-click": "pavucontrol",
     "on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",

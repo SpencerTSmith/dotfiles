@@ -285,6 +285,47 @@ vim.api.nvim_create_autocmd("BufWritePre", {
   end
 })
 
+-- local scope_hints = vim.api.nvim_create_namespace("scope_hints")
+-- vim.api.nvim_create_autocmd({ "BufEnter", "TextChanged", "TextChangedI" }, {
+--   callback = function()
+--     local buf = vim.api.nvim_get_current_buf()
+--     vim.api.nvim_buf_clear_namespace(buf, scope_hints, 0, -1)
+--
+--     local parser, err = vim.treesitter.get_parser(buf)
+--     if not err and parser then
+--       local root = parser:parse()[1]:root()
+--
+--       local seen = {}
+--
+--       local function walk(node)
+--         local start, _, stop = node:range()
+--
+--         if start < stop and not seen[stop] then
+--           local endline = vim.api.nvim_buf_get_lines(buf, stop, stop + 1, false)[1] or ""
+--
+--           if endline:match("^%s*[%)%]}]+[%s,;]*$") or endline:match("^%s*end[%s,;%)]*$") then
+--             local firstline = vim.trim(vim.api.nvim_buf_get_lines(buf, start, start + 1, false)[1] or "")
+--
+--             if #firstline > 0 and not firstline:match("^[%(%[{]+$") then
+--               seen[stop] = true
+--
+--               vim.api.nvim_buf_set_extmark(buf, scope_hints, stop, 0, {
+--                 virt_text = { { firstline, "Comment" } },
+--                 virt_text_pos = "eol",
+--               })
+--             end
+--           end
+--         end
+--         for child in node:iter_children() do
+--           walk(child)
+--         end
+--       end
+--
+--       walk(root)
+--     end
+--   end
+-- })
+
 -- ##########################################
 -- Plugins
 -- ##########################################
